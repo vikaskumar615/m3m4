@@ -37,7 +37,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 # vikasatpnp
-foldername = "mukta/"
+foldername = "m3_hkpri1/"
 if not os.path.exists(foldername):
     os.mkdir(foldername)
 
