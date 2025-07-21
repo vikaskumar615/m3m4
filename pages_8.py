@@ -34,7 +34,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-foldername = "w8_hkpk2/"
+foldername = "m8_hkpri4/"
 if not os.path.exists(foldername):
     os.mkdir(foldername)
 
