@@ -33,7 +33,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-foldername = "mukta1/"
+foldername = "m4_hkpri2/"
 if not os.path.exists(foldername):
     os.mkdir(foldername)
 
