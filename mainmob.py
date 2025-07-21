@@ -457,7 +457,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
 
         try:
             if os.name=="nt":
-                proxies = {"http://": "http://127.0.0.1:8888", "https://": "http://127.0.0.1:8888"}
+                #proxies = {"http://": "http://127.0.0.1:8888", "https://": "http://127.0.0.1:8888"}
                 proxies = {}
                 try:
                     r = httpx.post(theurl, data=data, headers=d_shuffled, verify=False, proxies=proxies)
