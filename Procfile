@@ -1,1 +1,1 @@
-worker:   python pages_3.py & python pages_4.py
+worker:   python pages_7.py & python pages_8.py
