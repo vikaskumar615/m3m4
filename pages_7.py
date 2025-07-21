@@ -14,9 +14,10 @@ import time
 import pytz
 from fkrdplog import updatetoserver
 import gc
-from fklinks.main import flipkart_parse
-from block import block
 import extrafiles
+extrafiles.start()
+from mainmob import flipkart_parse
+from block import block
 
 from os import system, name
  
@@ -34,10 +35,9 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-foldername = "oracle4pk_7/"
+foldername = "w7_hkpk1/"
 if not os.path.exists(foldername):
-        os.mkdir(foldername)
-extrafiles.start()
+    os.mkdir(foldername)
 
 
 def creation_time(path_to_file):
