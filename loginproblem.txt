@@ -1,1 +1,97 @@
+2024-09-23 23:36:31,421 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,416 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,425 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,418 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,429 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,421 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,418 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,436 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,421 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,425 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,425 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,429 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,429 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,436 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,456 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,436 - Rotating Log - ERROR - checkout:
+LSTMOBH2M2DT5SPSKJ4VAL5AW
+'NoneType' object is not subscriptable
+2024-09-23 23:36:31,457 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,456 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,459 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,456 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,459 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,457 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
+
+2024-09-23 23:36:31,459 - Rotating Log - ERROR - Traceback (most recent call last):
+  File "C:\Users\vikas\PycharmProjects\flipkart\checkout.py", line 88, in docheckout
+    pincode = jsonarray["RESPONSE"]["addressData"].get("pincode", "")
+TypeError: 'NoneType' object is not subscriptable
 
