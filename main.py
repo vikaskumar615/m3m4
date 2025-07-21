@@ -1003,4 +1003,3 @@ def controlspam(name,cp,listingid):
             return False
     except:
         return False
-
