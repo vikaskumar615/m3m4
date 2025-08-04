@@ -427,7 +427,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         binary_data = data.encode('utf-8')
 
         theurl = 'https://1.rome.api.flipkart.net/4/page/fetch'
-        #theurl = 'https://www.flipkart.com/4/page/fetch'
+        theurl = 'https://www.flipkart.com/api/4/page/fetch'
         uclient = Request(theurl, data=binary_data)
 
         useragent = random_useragent(open("agent6.txt", "r+"))
@@ -457,7 +457,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
 
         try:
             if os.name=="nt":
-                #proxies = {"http://": "http://127.0.0.1:8888", "https://": "http://127.0.0.1:8888"}
+                proxies = {"http://": "http://127.0.0.1:8888", "https://": "http://127.0.0.1:8888"}
                 proxies = {}
                 try:
                     r = httpx.post(theurl, data=data, headers=d_shuffled, verify=False, proxies=proxies)
@@ -471,6 +471,9 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
 
 
             html=r.text
+            if html.find("recaptcha")!=-1:
+                print("recaptcha")
+                return
         except Exception as e:
             print(filename + " : " + str(e))
             if str(e).find("404") != -1:
