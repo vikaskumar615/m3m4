@@ -499,6 +499,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
 
         ratwro = html
 
+        '''
         if html.find("\"isLoggedIn\":false") != -1:
             fl = open("loginproblem.txt", "r+")
             logintest = fl.read()
@@ -510,6 +511,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
                 fl = open("loginproblem.txt", "w+")
                 fl.write(date + "\r\n")
                 fl.close()
+        '''
 
         jsonarray = json.loads(html)
         #jsonarray = copy.deepcopy(json.loads(html))
@@ -526,16 +528,24 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         except Exception as e:
             appliedfilter = 10000
 
-        filterinlink = myurl.count("facets")
-        if myurl.count("facets.price_range") > 1:
+        filterinlinks = re.findall("facets.(.*?)%3D", myurl)
+        filterinlink = len(set(filterinlinks))
+        if filterinlinks.count("price_range.from") == 1:
             filterinlink -= 1
         if myurl.find("facets.serviceability") != -1:
             filterinlink -= 1
 
+        if appliedfilter == 0:
+            telegramurl = "https://api.telegram.org/bot630455540:AAHtnLN2YFEzDpiVWeZBInQ_nlsPCpFzNEI/sendMessage?chat_id=" + chatid + "&parse_mode=HTML&text=" + urllib.parse.quote(
+                "<b>mob-(" + filename + ") \n FILTER 0. \n"+str(totalproducts)+" products</b>")
+            myasyncsend(telegramurl)
+            return
+
         if appliedfilter < filterinlink:
             telegramurl = "https://api.telegram.org/bot630455540:AAHtnLN2YFEzDpiVWeZBInQ_nlsPCpFzNEI/sendMessage?chat_id=" + chatid + "&parse_mode=HTML&text=" + urllib.parse.quote(
-                "<b>mob-(" + filename + ") \n FILTER mismatch. \n Unwanted Results.</b>")
-            # myasyncsend(telegramurl)
+                "<b>mob-(" + filename + ") \n FILTER mismatch. \n"+str(appliedfilter)+" filters. "+str(totalproducts)+" products</b>")
+            myasyncsend(telegramurl)
+
 
         # print(pages)
 
