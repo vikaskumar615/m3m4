@@ -524,7 +524,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
     if appliedfilter < filterinlink:
         telegramurl = "https://api.telegram.org/bot630455540:AAHtnLN2YFEzDpiVWeZBInQ_nlsPCpFzNEI/sendMessage?chat_id=" + chatid + "&parse_mode=HTML&text=" + urllib.parse.quote(
             "<b>W-(" + filename + ") \n FILTER mismatch. \n"+str(appliedfilter)+" filters. "+str(totalproducts)+" products</b>")
-        myasyncsend(telegramurl)
+        #myasyncsend(telegramurl)
 
     # print(pages)
 
