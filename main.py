@@ -405,6 +405,8 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         "Upgrade-Insecure-Requests":"1",
         "Sec-Fetch-Site":"none",
         "Sec-Fetch-Mode":"navigate",
+        "Origin": "https://www.flipkart.com",
+        "Referer": "https://www.flipkart.com",
         "Sec-Fetch-User":"?1",
         "Sec-Fetch-Dest":"document",
         "Accept-Language":"en-GB,en;q=0.9", "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -414,11 +416,11 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
             if filename.find("grocery")!=-1:
                 with open("cookie.txt") as fff:
                     cokie=fff.readlines()
-                header["Cookie"]=cokie[2].strip()
+                #header["Cookie"]=cokie[2].strip()
 
             with open("cookie.txt") as fff:
                 cokie=fff.readlines()
-            header["Cookie"]=cokie[2].strip()
+            #header["Cookie"]=cokie[2].strip()
         except Exception as e:
             print(filename + " : cookie " + str(e))
             return
@@ -442,6 +444,10 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
                     r = requests.get(myurl, headers=d_shuffled, verify=False, impersonate="chrome110")
 
             html=r.text
+
+            if html.find("recaptcha")!=-1:
+                print("recaptcha")
+                return
 
         except Exception as e:
             print(filename + " : " + str(e))

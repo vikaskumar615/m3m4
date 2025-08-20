@@ -442,6 +442,8 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         header={"User-Agent":"okhttp/4.9.2",
         "Accept-Language":"en-GB,en;q=0.9", "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding":"gzip",
+        "Origin": "https://www.flipkart.com",
+        "Referer": "https://www.flipkart.com",
         "Content-Type":"application/json; charset=UTF-8",
         "X-User-Agent":useragent,
         "sn":sn,
@@ -471,6 +473,9 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
 
 
             html=r.text
+            fl = open("recap.txt", "a+")
+            fl.write(html + "\r\n------------------------------------------------------------------------\r\n")
+            fl.close()
             if html.find("recaptcha")!=-1:
                 print("recaptcha")
                 return
