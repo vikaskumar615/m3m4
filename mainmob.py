@@ -473,9 +473,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
 
 
             html=r.text
-            fl = open("recap.txt", "a+")
-            fl.write(html + "\r\n------------------------------------------------------------------------\r\n")
-            fl.close()
+
             if html.find("recaptcha")!=-1:
                 print("recaptcha")
                 return
