@@ -1,27 +1,27 @@
 {
   "urls": [
-        "http://139.59.20.187/fkart/newexp.php?i=20&qt=1&proxy=&server=yes&phonepe=yes&submit=start",
+        "http://139.59.0.200/fkart/newexp.php?i=20&qt=1&proxy=&server=yes&phonepe=yes&submit=start",
         "http://143.110.190.134/fkart/newexp.php?i=20&qt=1&proxy=&server=yes&phonepe=yes&submit=start"
   ],
   "NPurls": [
-        "http://139.59.20.187/fkart/newexp1.php?i=20&qt=1&proxy=&server=yes&phonepe=yes&submit=start",
+        "http://139.59.0.200/fkart/newexp1.php?i=20&qt=1&proxy=&server=yes&phonepe=yes&submit=start",
         "http://143.110.190.134/fkart/newexp1.php?i=20&qt=1&proxy=&server=yes&phonepe=yes&submit=start"
   ],
   "Nighturls": [
-        "http://139.59.20.187/fkart/newexp.php?i=20&qt=1&proxy=&cod=yes&server=yes&submit=start",
+        "http://139.59.0.200/fkart/newexp.php?i=20&qt=1&proxy=&cod=yes&server=yes&submit=start",
         "http://143.110.190.134/fkart/newexp.php?i=20&qt=1&proxy=&server=yes&cod=yes&submit=start"
   ],
   "takehighriskurls": [
-        "http://139.59.20.187/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&server=yes&submit=start&highrisk=yes",
+        "http://139.59.0.200/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&server=yes&submit=start&highrisk=yes",
         "http://143.110.190.134/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&server=yes&submit=start&highrisk=yes"
   ],
   "notassuredurls": [
-        "http://139.59.20.187/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&server=yes&submit=start&notassuredurls=yes",
+        "http://139.59.0.200/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&server=yes&submit=start&notassuredurls=yes",
         "http://143.110.190.134/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&server=yes&submit=start&notassuredurls=yes"
   ],
   "bis": [
-        "http://server1.lalbox.tech/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&bis=yes&server=yes&submit=start&notassuredurls=yes",
-        "http://server2.lalbox.tech/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&bis=yes&server=yes&submit=start&notassuredurls=yes",
-        "http://server3.lalbox.tech/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&bis=yes&server=yes&submit=start&notassuredurls=yes"
+        "http://server1.lalkothi.tech/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&bis=yes&server=yes&submit=start&notassuredurls=yes",
+        "http://server2.lalkothi.tech/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&bis=yes&server=yes&submit=start&notassuredurls=yes",
+        "http://server3.lalkothi.tech/fkart/newexp.php?i=20&qt=1&phonepe=yes&proxy=&bis=yes&server=yes&submit=start&notassuredurls=yes"
   ]
 }
