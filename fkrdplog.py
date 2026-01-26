@@ -141,7 +141,7 @@ def updatetoserver(servername=""):
 
         post = json.dumps(data)
         print(post)
-        url = "http://rdptv.lalbox.tech/rdplog/update1.php"
+        url = "http://rdptv.lalkothi.tech/rdplog/update1.php"
         response = requests.post(url, data=post).content.decode()
         with open(servername.strip("/")+"_lastupdatesent.txt", 'w') as f:
             f.write(str(int(time.time())))
