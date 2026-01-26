@@ -14,7 +14,7 @@ def get_uptime():
     return uptime_seconds
 
 def download(name):
-    url = "http://oracle1.lalbox.tech/amz/flipkart/"+name
+    url = "http://oracle1.lalkothi.tech/amz/flipkart/"+name
     response = requests.get(url).content
     if response != None and len(response)!=0 and response.find(b"/lander")==-1 and response.find(b"DOCTYPE")==-1:
         with open(name, 'wb') as f:
@@ -29,3 +29,4 @@ def start():
 
 if __name__ == '__main__':
     start()
+
