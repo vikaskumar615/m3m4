@@ -50,7 +50,7 @@ def block(foldername):
 
         try:
             #url = "https://api.telegram.org/bot923259452:AAG1tBRBM7PIIYUL1g789IP4tBMgsI8uOJg/getUpdates?offset=-1"
-            telegramurl = "http://rdptv.lalbox.tech/fkwebhook/fkcommands.php"
+            telegramurl = "http://rdptv.lalkothi.tech/fkwebhook/fkcommands.php"
 
             header = {}
             header.update([("upgrade-insecure-requests", "1")])
@@ -470,4 +470,5 @@ def createtable():
 if __name__ == '__main__':
     createtable()
     block("testing..")
+
     remove_dups()
