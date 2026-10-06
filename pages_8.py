@@ -145,10 +145,13 @@ def dowork():
     print("Telegram = " + telegram)
     #pcmemory()
 
+    gotosleep=False
     with open(foldername.strip("/") + '_output.txt', 'w+') as fall:
         res_queue.put(None)
         while True:
-            item=res_queue.get()
+            item = res_queue.get()
+            if str(item).find("529 Error")!=-1:
+                gotosleep=True
             if item is None:
                 break
             fall.write(item + "\r\n")
@@ -157,6 +160,9 @@ def dowork():
     del res_queue
     collected = gc.collect()
     print("Garbage collector: collected", "%d objects." % collected)
+    if gotosleep == True:
+        print("\n529 errors found. sleep 120 seconds")
+        time.sleep(120)
 
 while True:
     try:
