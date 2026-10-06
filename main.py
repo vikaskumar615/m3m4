@@ -1,6 +1,7 @@
 import base64
 import concurrent.futures
 import random
+import time
 import uuid
 from multiprocessing.pool import ThreadPool
 from urllib.request import Request, urlopen
@@ -20,7 +21,7 @@ import aiohttp
 
 from requests.packages import urllib3
 import os
-if os.name=="nt":
+if os.name=="nt123":
     import httpx
 else:
     from curl_cffi import requests
@@ -359,10 +360,20 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         telegram = "off"
 
     if hour == 3 or hour == 4:
-        if date not in get_contents:
-            f = open(filename, "w+")
-            f.write(date + "\r\n")
-            f.close()
+        try:
+            if os.path.exists("template_"+filename) and date not in get_contents:
+                print("template found.... copying to " + filename)
+                with open("template_"+filename, 'r') as source:
+                    content = source.read()
+                with open(filename, 'w+') as destination:
+                    destination.write(date + "\r\n" + content)
+            elif date not in get_contents:
+                f = open(filename, "w+")
+                f.write(date + "\r\n")
+                f.close()
+        except Exception as e:
+            print("template cant be copied: " + str(e))
+
         telegram = "off"
 
     '''
@@ -430,7 +441,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         d_shuffled = dict(l)
 
         try:
-            if os.name=="nt":
+            if os.name=="nt123":
                 try:
                     #proxies = {"http://": "http://127.0.0.1:8888", "https://": "http://127.0.0.1:8888"}
                     proxies = {}
@@ -438,12 +449,19 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
                 except Exception as e:
                     r = httpx.get(myurl, headers=d_shuffled, verify=False, proxies=proxies)
             else:
+                proxies = {"http": "http://127.0.0.1:8888", "https": "http://127.0.0.1:8888"}
+                proxies = {}
+                impersonations = ["chrome99_android","firefox147","chrome116","safari260","chrome146","edge101","safari260_ios","firefox135"]
                 try:
-                    r = requests.get(myurl, headers=d_shuffled, verify=False, impersonate="chrome110")
+                    r = requests.get(myurl, headers=d_shuffled, proxies=proxies, verify=False, impersonate=random.choice(impersonations))
                 except:
-                    r = requests.get(myurl, headers=d_shuffled, verify=False, impersonate="chrome110")
+                    r = requests.get(myurl, headers=d_shuffled, proxies=proxies, verify=False, impersonate="chrome110")
 
             html=r.text
+            if r.status_code>=400:
+                print(filename + " -> " + str(r.status_code) + " error")
+                res_queue.put(str('{0:<35} 529 Error'.format(filename)))
+                return
 
             if html.find("recaptcha")!=-1:
                 print("recaptcha")
@@ -497,6 +515,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
             fl = open("new_ex.html", "w+")
             fl.write(date + "\r\n" + str(e) + "\r\n" + myurl + "\r\n" + html)
             fl.close()
+        print(filename + " -> Unknown page found.")
         return
 
     jsonarray = json.loads(mat)
@@ -513,6 +532,15 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         appliedfilter = int(filterapplied[1])
     except Exception as e:
         appliedfilter = 10000
+
+    fakepage=False
+    try:
+        suburl = re.search("https://www.flipkart.com(.*?)\?", myurl)
+        suburl = suburl[1]
+        if html.find(suburl)==-1:
+            fakepage=True
+    except Exception as e:
+        return
 
     filterinlinks = re.findall("facets.(.*?)%3D", myurl)
     filterinlink = len(set(filterinlinks))
@@ -531,6 +559,16 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         telegramurl = "https://api.telegram.org/bot630455540:AAHtnLN2YFEzDpiVWeZBInQ_nlsPCpFzNEI/sendMessage?chat_id=" + chatid + "&parse_mode=HTML&text=" + urllib.parse.quote(
             "<b>W-(" + filename + ") \n FILTER mismatch. \n"+str(appliedfilter)+" filters. "+str(totalproducts)+" products</b>")
         #myasyncsend(telegramurl)
+
+    if fakepage == True and totalproducts>60:
+        telegramurl = "https://api.telegram.org/bot630455540:AAHtnLN2YFEzDpiVWeZBInQ_nlsPCpFzNEI/sendMessage?chat_id=" + chatid + "&parse_mode=HTML&text=" + urllib.parse.quote(
+            "<b>W-(" + filename + ") \n FakePage detected. \n"+str(totalproducts)+" products</b>")
+        myasyncsend(telegramurl)
+        if not os.path.exists('logggs'):
+            os.makedirs('logggs')
+        with open("logggs/fakepage_"+str(random.randint(1, 100))+".html", "w+") as w:
+            w.write(myurl+"\n"+filename+"\n"+str(html.encode('utf-8')))
+        return
 
     # print(pages)
 

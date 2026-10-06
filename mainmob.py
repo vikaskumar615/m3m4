@@ -1,6 +1,7 @@
 import base64
 import concurrent.futures
 import random
+import time
 import uuid
 from multiprocessing.pool import ThreadPool
 from urllib.request import Request, urlopen
@@ -18,7 +19,7 @@ import block
 #import copy
 #import socket
 import os
-if os.name=="nt":
+if os.name=="nt123":
     import httpx
 else:
     from curl_cffi import requests
@@ -374,10 +375,20 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         telegram = "off"
 
     if hour == 3 or hour == 4:
-        if date not in get_contents:
-            f = open(filename, "w+")
-            f.write(date + "\r\n")
-            f.close()
+        try:
+            if os.path.exists("template_"+filename) and date not in get_contents:
+                print("template found.... copying to " + filename)
+                with open("template_"+filename, 'r') as source:
+                    content = source.read()
+                with open(filename, 'w+') as destination:
+                    destination.write(date + "\r\n" + content)
+            elif date not in get_contents:
+                f = open(filename, "w+")
+                f.write(date + "\r\n")
+                f.close()
+        except Exception as e:
+            print("template cant be copied: " + str(e))
+
         telegram = "off"
 
     numberofresults = 0
@@ -435,9 +446,12 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
                                       'Mozilla/5.0') + ' AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36FKUA/msite/0.0.3/msite/Mobile'
 
         with open("cookie.txt") as fff:
-            cokie=fff.readlines()
-            sn=cokie[0].strip()
-            securecoki = cokie[1].strip()
+            cokie = fff.readlines()
+            if len(cokie) <= 1:
+                sn = securecoki = ""
+            else:
+                sn=cokie[0].strip()
+                securecoki = cokie[1].strip()
 
         header={"User-Agent":"okhttp/4.9.2",
         "Accept-Language":"en-GB,en;q=0.9", "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -458,7 +472,7 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
         d_shuffled = dict(l)
 
         try:
-            if os.name=="nt":
+            if os.name=="nt123":
                 proxies = {"http://": "http://127.0.0.1:8888", "https://": "http://127.0.0.1:8888"}
                 proxies = {}
                 try:
@@ -466,13 +480,19 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
                 except Exception as e:
                     r = httpx.post(theurl, data=data, headers=d_shuffled, verify=False, proxies=proxies)
             else:
+                proxies = {"http": "http://127.0.0.1:8888", "https": "http://127.0.0.1:8888"}
+                proxies = {}
+                impersonations = ["chrome99_android","firefox147","chrome116","safari260","chrome146","edge101","safari260_ios","firefox135"]
                 try:
-                    r = requests.post(theurl, data=data, headers=d_shuffled, verify=False, impersonate="chrome110")
+                    r = requests.post(theurl, data=data, headers=d_shuffled, verify=False, impersonate=random.choice(impersonations))
                 except:
                     r = requests.post(theurl, data=data, headers=d_shuffled, verify=False, impersonate="chrome110")
 
 
             html=r.text
+            if r.status_code>=400:
+                print(filename + " -> " + str(r.status_code) + " error")
+                return
 
             if html.find("recaptcha")!=-1:
                 print("recaptcha")
@@ -501,6 +521,10 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
             return
 
         ratwro = html
+        if r.status_code>400:
+            print(filename + " -> " + str(r.status_code))
+            res_queue.put(str('{0:<35} 529 Error'.format(filename)))
+            return
 
         '''
         if html.find("\"isLoggedIn\":false") != -1:
@@ -521,6 +545,10 @@ def flipkart_parse(filename, telegram, force, myurl, res_queue, stop_not_assured
 
 
         checkoutpro = 0
+        if jsonarray.get("ERROR_CODE", "")==429:
+            print(filename + " ==> 429 too many requests")
+            return
+
         pages = jsonarray["RESPONSE"].get("slots", "")
         totalproducts = jsonarray["RESPONSE"]["pageData"]["trackingContext"]["tracking"].get("maxProductsCount", "")
 
